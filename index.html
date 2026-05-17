@@ -2,146 +2,22 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Plan your next adventure — destinations, itineraries, and packing lists in one place."
+      content="Our 6-day Japan adventure — itinerary, budget tracker, and travel scrapbook."
     />
-    <title>Trip — Plan your next adventure</title>
+    <title>Japan 2026 · Fukuoka & Beyond</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header class="site-header">
-      <a href="#" class="logo">Trip</a>
-      <nav class="nav" aria-label="Main">
-        <a href="#destinations">Destinations</a>
-        <a href="#planner">Planner</a>
-        <a href="#packing">Packing</a>
-      </nav>
-      <button type="button" class="btn btn-ghost" id="btn-new-trip">New trip</button>
-    </header>
-
-    <main>
-      <section class="hero">
-        <div class="hero-content">
-          <p class="eyebrow">Your journey starts here</p>
-          <h1>Plan trips you’ll actually remember</h1>
-          <p class="hero-lead">
-            Sketch itineraries, save dream destinations, and build packing lists —
-            all in your browser. No account required.
-          </p>
-          <div class="hero-actions">
-            <a href="#planner" class="btn btn-primary">Start planning</a>
-            <a href="#destinations" class="btn btn-secondary">Browse ideas</a>
-          </div>
-        </div>
-        <div class="hero-card" aria-hidden="true">
-          <div class="hero-card-inner">
-            <span class="hero-card-label">Upcoming</span>
-            <strong id="hero-trip-name">Weekend in Kyoto</strong>
-            <span class="hero-card-dates" id="hero-trip-dates">Apr 12 – Apr 15</span>
-            <ul class="hero-card-stats">
-              <li><span id="stat-days">3</span> days</li>
-              <li><span id="stat-stops">0</span> stops</li>
-              <li><span id="stat-packed">0</span> packed</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section id="destinations" class="section destinations">
-        <div class="section-head">
-          <h2>Destination ideas</h2>
-          <p>Tap a card to add it to your itinerary.</p>
-        </div>
-        <div class="destination-grid" id="destination-grid"></div>
-      </section>
-
-      <section id="planner" class="section planner">
-        <div class="section-head">
-          <h2>Trip planner</h2>
-          <p>Name your trip and add stops day by day.</p>
-        </div>
-        <form class="trip-form card" id="trip-form">
-          <div class="form-row">
-            <label for="trip-name">Trip name</label>
-            <input
-              type="text"
-              id="trip-name"
-              name="tripName"
-              placeholder="e.g. Summer in Portugal"
-              required
-            />
-          </div>
-          <div class="form-row form-row-split">
-            <div>
-              <label for="trip-start">Start</label>
-              <input type="date" id="trip-start" name="tripStart" />
-            </div>
-            <div>
-              <label for="trip-end">End</label>
-              <input type="date" id="trip-end" name="tripEnd" />
-            </div>
-          </div>
-          <div class="form-row">
-            <label for="stop-input">Add a stop</label>
-            <div class="input-group">
-              <input
-                type="text"
-                id="stop-input"
-                placeholder="Museum, café, trailhead…"
-              />
-              <button type="button" class="btn btn-primary" id="btn-add-stop">
-                Add
-              </button>
-            </div>
-          </div>
-        </form>
-        <ol class="itinerary-list card" id="itinerary-list" aria-label="Itinerary stops"></ol>
-      </section>
-
-      <section id="packing" class="section packing">
-        <div class="section-head">
-          <h2>Packing list</h2>
-          <p>Check items off as you pack. Progress saves automatically.</p>
-        </div>
-        <form class="packing-form card" id="packing-form">
-          <div class="input-group">
-            <input
-              type="text"
-              id="packing-input"
-              placeholder="Add an item…"
-              aria-label="New packing item"
-            />
-            <button type="submit" class="btn btn-primary">Add item</button>
-          </div>
-        </form>
-        <ul class="packing-list card" id="packing-list"></ul>
-        <p class="packing-progress" id="packing-progress" aria-live="polite"></p>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <p>Built with Cursor · <span id="year"></span></p>
-    </footer>
-
-    <dialog class="modal" id="modal-new-trip">
-      <form method="dialog" class="modal-inner">
-        <h3>Start fresh?</h3>
-        <p>This clears your current trip, itinerary, and packing list.</p>
-        <div class="modal-actions">
-          <button type="button" class="btn btn-ghost" value="cancel">Cancel</button>
-          <button type="submit" class="btn btn-primary" value="confirm">Clear &amp; start over</button>
-        </div>
-      </form>
-    </dialog>
-
-    <script src="app.js" type="module"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

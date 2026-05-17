@@ -1,10 +1,23 @@
 {
   "name": "trip",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
-  "description": "Trip planning website — itineraries, destinations, and packing lists",
+  "description": "Japan couple's trip planner — itinerary, budget, scrapbook",
+  "type": "module",
   "scripts": {
-    "start": "npx --yes serve . -p 3000",
-    "dev": "npm run start"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "lucide-react": "^0.511.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.8",
+    "@vitejs/plugin-react": "^4.5.0",
+    "tailwindcss": "^4.1.8",
+    "vite": "^6.3.5"
   }
 }
