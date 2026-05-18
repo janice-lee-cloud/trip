@@ -1,6 +1,50 @@
 # Japan 2026 — Couple's Trip Planner
 
-A single-page React app for your **6-day, 5-night Fukuoka trip** (June 4–9, 2026): expandable itinerary, budget tracker, and scrapbook wall. All data persists in **localStorage**.
+A single-page React app for your **6-day, 5-night Fukuoka trip** (June 4–9, 2026): expandable itinerary, budget tracker, and scrapbook wall.
+
+## Live website (anyone, any browser, any time)
+
+After you push to GitHub and enable Pages (one-time setup below), the site is public at:
+
+**https://janice-lee-cloud.github.io/trip/**
+
+Share that link — friends and family can open it in Chrome, Safari, Edge, or on a phone. Each person’s budget and scrapbook notes save in **their own browser** (localStorage).
+
+### One-time GitHub setup
+
+1. **Push your code** (see [Push to GitHub](#push-to-github) below).
+2. On GitHub: open **janice-lee-cloud/trip** → **Settings** → **Pages**.
+3. Under **Build and deployment**, set **Source** to **GitHub Actions** (not “Deploy from branch”).
+4. Push to `main` again (or re-run the **Deploy to GitHub Pages** workflow under **Actions**).
+
+The workflow in `.github/workflows/deploy-pages.yml` builds and publishes automatically on every push to `main`.
+
+---
+
+## On your computer (development)
+
+```bash
+cd /Users/leewaikiu/projects/trip
+./start.sh
+```
+
+Opens **http://localhost:5173** in your browser. Press `Ctrl+C` to stop.
+
+> Do not open `index.html` from Finder — use `start.sh` or `npm run dev`.
+
+---
+
+## Push to GitHub
+
+```bash
+cd /Users/leewaikiu/projects/trip
+git push -u origin main
+```
+
+- **Username:** `janice-lee-cloud`
+- **Password:** [personal access token](https://github.com/settings/tokens) with `repo` scope
+
+---
 
 ## Design
 
@@ -8,69 +52,16 @@ A single-page React app for your **6-day, 5-night Fukuoka trip** (June 4–9, 20
 - **Fonts:** Plus Jakarta Sans + Playfair Display
 - **Icons:** Lucide React
 
-## Open in Chrome (or any browser)
-
-**Easiest — double-click or run once in Terminal:**
-
-```bash
-cd /Users/leewaikiu/projects/trip
-./start.sh
-```
-
-This installs dependencies if needed, starts the site, and opens **http://localhost:5173** in your default browser (Chrome, Safari, Edge, etc.).
-
-**Manual:**
-
-```bash
-cd /Users/leewaikiu/projects/trip
-./.tools/bin/npm install   # first time only
-./.tools/bin/npm run dev
-```
-
-Then open **http://localhost:5173** in Google Chrome.
-
-> **Note:** Do not open `index.html` directly from Finder — this app needs a local server. Use `start.sh` or `npm run dev` above.
-
-## Build for production
-
-```bash
-npm run build
-npm run preview
-```
-
-## Push to GitHub
-
-```bash
-git add .
-git commit -m "Japan 2026 trip planner — React + Tailwind"
-git push -u origin main
-```
-
-Use a [GitHub personal access token](https://github.com/settings/tokens) as the password if prompted.
-
-## GitHub Pages
-
-After pushing: repo **Settings → Pages →** deploy from branch `main`, folder `/ (root)` or `/dist` if you deploy the build output.
-
-For `/dist`, use a GitHub Action or push `dist` to `gh-pages`. Simplest: use [Vite base](https://vite.dev/guide/static-deploy.html) `base: '/trip/'` and deploy `dist`.
-
 ## Project structure
 
 ```
 src/
-├── App.jsx                 # Tab shell
-├── main.jsx
-├── index.css               # Tailwind + design tokens
-├── data/itinerary.js       # Full June 4–9 schedule
+├── App.jsx
+├── data/itinerary.js       # June 4–9 schedule
 ├── hooks/useLocalStorage.js
-├── utils/format.js
 └── components/
-    ├── Layout/             # Header, TabNav
-    ├── Itinerary/          # Timeline days
-    ├── Finance/            # Budget + expenses
-    └── Scrapbook/          # Memory cards
+    ├── Layout/
+    ├── Itinerary/
+    ├── Finance/
+    └── Scrapbook/
 ```
-
-## Develop with Cursor
-
-Open `/Users/leewaikiu/projects/trip` in Cursor and ask for features like dark mode, PDF export, or shared cloud sync.

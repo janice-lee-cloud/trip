@@ -7,7 +7,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "build:pages": "VITE_BASE=/trip/ vite build",
+    "preview": "vite preview",
+    "preview:pages": "VITE_BASE=/trip/ vite build && vite preview --base /trip/"
   },
   "dependencies": {
     "lucide-react": "^0.511.0",
