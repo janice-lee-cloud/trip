@@ -1,20 +1,23 @@
 @import "tailwindcss";
 
 @theme {
-  --color-cream: #fdfbf7;
-  --color-ink: #2c2c2c;
-  --color-ink-muted: #6b6b6b;
-  --color-sakura: #e8a7a1;
-  --color-sakura-soft: #f9ebe9;
+  --color-cream: #fff9f7;
+  --color-ink: #3d2c33;
+  --color-ink-muted: #7a6570;
+  --color-sakura: #f4a4b8;
+  --color-sakura-soft: #fde8ef;
+  --color-blush: #e8a7c4;
+  --color-blush-soft: #fceef4;
+  --color-rose: #c97b96;
   --color-matcha: #8aa38b;
   --color-matcha-soft: #e8efe8;
-  --color-gold: #d4af37;
-  --color-gold-soft: #f5ecd4;
-  --color-border: #e5e5e5;
+  --color-gold: #d4a574;
+  --color-gold-soft: #f9efe3;
+  --color-border: #f0e4e8;
   --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
-  --font-display: "Playfair Display", Georgia, serif;
-  --shadow-soft: 0 8px 32px rgba(44, 44, 44, 0.06);
-  --shadow-card: 0 4px 20px rgba(44, 44, 44, 0.05);
+  --font-display: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --shadow-soft: 0 8px 32px rgba(201, 123, 150, 0.1);
+  --shadow-card: 0 4px 24px rgba(201, 123, 150, 0.08);
 }
 
 html {
@@ -27,8 +30,9 @@ body {
   color: var(--color-ink);
   background: var(--color-cream);
   background-image:
-    radial-gradient(ellipse 70% 50% at 100% 0%, rgba(232, 167, 161, 0.15), transparent),
-    radial-gradient(ellipse 50% 40% at 0% 100%, rgba(138, 163, 139, 0.12), transparent);
+    radial-gradient(ellipse 80% 55% at 100% 0%, rgba(244, 164, 184, 0.22), transparent),
+    radial-gradient(ellipse 60% 45% at 0% 100%, rgba(138, 163, 139, 0.14), transparent),
+    radial-gradient(ellipse 40% 30% at 50% 0%, rgba(249, 239, 227, 0.9), transparent);
   min-height: 100dvh;
   -webkit-font-smoothing: antialiased;
 }
@@ -42,7 +46,7 @@ body {
 }
 
 ::selection {
-  background: rgba(232, 167, 161, 0.35);
+  background: rgba(244, 164, 184, 0.4);
 }
 
 input,

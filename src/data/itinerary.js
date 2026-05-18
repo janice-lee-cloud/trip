@@ -1,10 +1,13 @@
+import { tripImage } from "../utils/images";
+
 export const TRIP_META = {
-  title: "Japan 2026",
-  subtitle: "Fukuoka · Hiroshima · Miyajima · Yufuin",
+  title: "Fukuoka & Beyond",
+  subtitle: "Hakata · Hiroshima · Miyajima · Yufuin",
   dates: "June 4 – 9, 2026",
   nights: 5,
   days: 6,
-  tagline: "A cozy couple's adventure — no car, all public transit",
+  tagline:
+    "A 6-day, train-friendly Kyushu itinerary — ramen, shrines, day trips & photo spots",
 };
 
 export const HOTELS = {
@@ -27,8 +30,7 @@ export const ITINERARY_DAYS = [
     date: "2026-06-04",
     weekday: "Thu",
     label: "Arrival & Hakata Night Vibes",
-    image:
-      "https://images.unsplash.com/photo-1590559899731-a382839d54b9?w=800&q=80",
+    image: tripImage("day-1.jpg"),
     imageAlt: "Fukuoka city lights at night",
     hotelNote: "Check-in: Hotel Trad Hakata",
     expanded: true,
@@ -37,14 +39,14 @@ export const ITINERARY_DAYS = [
         time: "17:00",
         title: "Land at Fukuoka Airport",
         description:
-          "Take the subway (only 2 stops) or a taxi straight to Hakata Station.",
+          "Subway (2 stops) or taxi to Hakata Station — easy first landing in Kyushu.",
         category: "transit",
         icon: "plane",
       },
       {
         time: "18:30",
         title: "Check-in — Hotel Trad Hakata",
-        description: "Sumiyoshi 3-12-1. Drop bags and freshen up.",
+        description: "Sumiyoshi 3-12-1. Drop bags, freshen up, snap a hotel mirror pic.",
         category: "hotel",
         icon: "hotel",
         highlight: true,
@@ -53,7 +55,7 @@ export const ITINERARY_DAYS = [
         time: "20:00",
         title: "Nakasu Yatai food stalls",
         description:
-          "Walk over for cozy Hakata Tonkotsu Ramen next to the river.",
+          "Iconic riverside stalls — Hakata tonkotsu ramen under the lanterns. 📸",
         category: "food",
         icon: "utensils",
       },
@@ -66,22 +68,21 @@ export const ITINERARY_DAYS = [
     weekday: "Fri",
     label: "Hiroshima & Miyajima Day Trip",
     badge: "🚄 Shinkansen Route",
-    image:
-      "https://images.unsplash.com/photo-1528164344727-475c46e1a597?w=800&q=80",
-    imageAlt: "Miyajima torii gate",
+    image: tripImage("day-2.jpg"),
+    imageAlt: "Miyajima torii gate at the water",
     hotelNote: "Night 2 · Hotel Trad Hakata",
     events: [
       {
         time: "08:00",
         title: "Shinkansen to Hiroshima",
-        description: "Bullet train from Hakata Station — direct and smooth.",
+        description: "Bullet train from Hakata — book seats early for window views.",
         category: "transit",
         icon: "train",
       },
       {
         time: "10:30",
         title: "Peace Memorial Park & Museum",
-        description: "A moving, essential visit in Hiroshima.",
+        description: "A thoughtful, must-see stop in Hiroshima.",
         category: "sightseeing",
         icon: "landmark",
       },
@@ -89,21 +90,21 @@ export const ITINERARY_DAYS = [
         time: "13:00",
         title: "Miyajima Island",
         description:
-          "Local train + ferry. Floating Torii Gate and cute wild deer.",
+          "Train + ferry. Floating torii, deer, and golden-hour photos by the shore.",
         category: "sightseeing",
         icon: "deer",
       },
       {
         time: "18:30",
         title: "Hiroshima-style Okonomiyaki",
-        description: "Dinner near Hiroshima Station before heading back.",
+        description: "Layered savory pancake near Hiroshima Station before the return train.",
         category: "food",
         icon: "utensils",
       },
       {
         time: "20:30",
         title: "Shinkansen back to Fukuoka",
-        description: "Return to Hotel Trad Hakata for the night.",
+        description: "Back to Hotel Trad Hakata for the night.",
         category: "transit",
         icon: "train",
       },
@@ -115,29 +116,28 @@ export const ITINERARY_DAYS = [
     date: "2026-06-06",
     weekday: "Sat",
     label: "Fukuoka Culture & Cute Cafés",
-    image:
-      "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&q=80",
-    imageAlt: "Japanese café aesthetic",
+    image: tripImage("day-3.jpg"),
+    imageAlt: "Cozy Japanese café interior",
     hotelNote: "Night 3 · Hotel Trad Hakata",
     events: [
       {
         time: "09:30",
         title: "Kushida Shrine & Ohori Park",
-        description: "Morning stroll — shrines, pond, and calm greenery.",
+        description: "Morning shrine visit, pond walk — calm, green, very photogenic.",
         category: "sightseeing",
         icon: "landmark",
       },
       {
         time: "13:00",
         title: "Tenjin Underground or teamLab Forest",
-        description: "Lunch and shopping — pick your vibe for the afternoon.",
+        description: "Shopping, lunch, and aesthetic afternoon — pick your mood.",
         category: "sightseeing",
         icon: "sparkles",
       },
       {
         time: "18:30",
         title: "Motsunabe or Mizutaki dinner",
-        description: "Local Fukuoka hotpot — beef tripe or chicken.",
+        description: "Fukuoka specialties — beef tripe hotpot or gentle chicken broth.",
         category: "food",
         icon: "utensils",
       },
@@ -148,18 +148,17 @@ export const ITINERARY_DAYS = [
     dayNumber: 4,
     date: "2026-06-07",
     weekday: "Sun",
-    label: "Romantic Yufuin Day Trip",
+    label: "Yufuin Day Trip ✨",
     badge: "🚄 Yufuin no Mori",
-    image:
-      "https://images.unsplash.com/photo-1493976040374-85c8e712f627?w=800&q=80",
-    imageAlt: "Japanese countryside and onsen town",
+    image: tripImage("day-4.jpg"),
+    imageAlt: "Japanese countryside and onsen town scenery",
     hotelNote: "Night 4 · Hotel Trad Hakata",
     events: [
       {
         time: "09:24",
         title: "Yufuin no Mori limited express",
         description:
-          "Board the beautiful green train from Hakata Station.",
+          "Board the scenic green train from Hakata — worth the window seat.",
         category: "transit",
         icon: "train",
         highlight: true,
@@ -168,14 +167,14 @@ export const ITINERARY_DAYS = [
         time: "11:30",
         title: "Yunotsubo Street → Lake Kinrin",
         description:
-          "Boutique shops, Totoro stores, snacks, and lakeside views.",
+          "Boutiques, Totoro shops, snacks, and misty lake views — main photo walk.",
         category: "sightseeing",
         icon: "store",
       },
       {
         time: "15:00",
         title: "Foot bath & matcha desserts",
-        description: "Relax at a public ashi-yu and sweet treats.",
+        description: "Public ashi-yu and sweet treats — slow, dreamy afternoon.",
         category: "sightseeing",
         icon: "coffee",
       },
@@ -195,15 +194,14 @@ export const ITINERARY_DAYS = [
     weekday: "Mon",
     label: "Shopping & Onsen Luxury",
     badge: "🏨 Hotel Switch",
-    image:
-      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80",
+    image: tripImage("day-5.jpg"),
     imageAlt: "Japanese onsen hot spring",
     hotelNote: "Dormy Inn Premium Hakata Canal City",
     events: [
       {
         time: "10:00",
         title: "Check out — Hotel Trad Hakata",
-        description: "Pack up and head to your new home base.",
+        description: "Pack up and move to your Canal City base.",
         category: "hotel",
         icon: "hotel",
         highlight: true,
@@ -212,7 +210,7 @@ export const ITINERARY_DAYS = [
         time: "10:30",
         title: "Check in — Dormy Inn Premium",
         description:
-          "袖湊の湯 Dormy Inn PREMIUM Hakata Canal City Mae. Drop luggage.",
+          "袖湊の湯 Dormy Inn PREMIUM Hakata Canal City Mae. Drop luggage first.",
         category: "hotel",
         icon: "hotel",
         highlight: true,
@@ -221,7 +219,7 @@ export const ITINERARY_DAYS = [
         time: "11:00",
         title: "Canal City Hakata",
         description:
-          "Shopping, fountain show, and Ramen Stadium for lunch.",
+          "Shopping, fountain show, Ramen Stadium — easy content for stories.",
         category: "sightseeing",
         icon: "shopping",
       },
@@ -229,7 +227,7 @@ export const ITINERARY_DAYS = [
         time: "18:00",
         title: "Onsen & Yonaki Soba",
         description:
-          "Unwind in natural hot spring baths. Free late-night ramen in the evening!",
+          "Natural hot spring baths, then free late-night ramen at the hotel.",
         category: "sightseeing",
         icon: "bath",
       },
@@ -241,14 +239,13 @@ export const ITINERARY_DAYS = [
     date: "2026-06-09",
     weekday: "Tue",
     label: "Souvenirs & Departure",
-    image:
-      "https://images.unsplash.com/photo-1542051841857-5f90071e7989?w=800&q=80",
-    imageAlt: "Fukuoka street and travel mood",
+    image: tripImage("day-6.jpg"),
+    imageAlt: "Japanese street and travel mood",
     events: [
       {
         time: "09:30",
         title: "Slow morning & bakery breakfast",
-        description: "Sleep in — hotel breakfast or a gourmet bakery.",
+        description: "Sleep in — hotel breakfast or a local bakery treat.",
         category: "food",
         icon: "coffee",
       },
@@ -256,7 +253,7 @@ export const ITINERARY_DAYS = [
         time: "11:00",
         title: "Check out & souvenir hunt",
         description:
-          "Leave bags at front desk. Hakata Station for Torimon cakes & gifts.",
+          "Leave bags at the desk. Hakata Station for Torimon, mentaiko & gifts.",
         category: "shopping",
         icon: "gift",
       },
@@ -277,7 +274,7 @@ export const ITINERARY_DAYS = [
       {
         time: "16:15",
         title: "Departure ✈️",
-        description: "Flight home — until next time, Japan!",
+        description: "Sayōnara, Kyushu — until next time!",
         category: "transit",
         icon: "heart",
         highlight: true,
@@ -290,9 +287,9 @@ export const CATEGORY_STYLES = {
   food: {
     label: "Food",
     emoji: "🍜",
-    bg: "bg-sakura-soft",
-    text: "text-[#b0706a]",
-    border: "border-sakura/40",
+    bg: "bg-blush-soft",
+    text: "text-rose",
+    border: "border-blush/50",
   },
   sightseeing: {
     label: "Sightseeing",
@@ -318,8 +315,8 @@ export const CATEGORY_STYLES = {
   shopping: {
     label: "Shopping",
     emoji: "🛍️",
-    bg: "bg-sakura-soft",
-    text: "text-[#b0706a]",
-    border: "border-sakura/40",
+    bg: "bg-blush-soft",
+    text: "text-rose",
+    border: "border-blush/50",
   },
 };
