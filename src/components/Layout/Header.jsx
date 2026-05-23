@@ -7,8 +7,8 @@ export default function Header() {
       <div className="mx-auto max-w-5xl px-4 py-5 sm:px-6 sm:py-6">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-rose mb-1">
-              Fukuoka travel guide · No car needed
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sakura mb-1">
+              Couple&apos;s trip · No car
             </p>
             <h1 className="font-display text-3xl sm:text-4xl font-semibold text-ink tracking-tight">
               {TRIP_META.title}
