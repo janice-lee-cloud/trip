@@ -1,5 +1,6 @@
 import { ITINERARY_DAYS, TRIP_META } from "../../data/itinerary";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
+import { btnGhost } from "../../utils/ui";
 import DayCard from "./DayCard";
 
 const EXPANDED_KEY = "japan-trip-expanded-days";
@@ -27,35 +28,28 @@ export default function ItineraryTab() {
   };
 
   return (
-    <section className="space-y-6" aria-labelledby="itinerary-heading">
-      <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+    <section className="space-y-8" aria-labelledby="itinerary-heading">
+      <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
         <div>
-          <h2 id="itinerary-heading" className="font-display text-2xl font-semibold text-ink">
-            Itinerary
+          <h2 id="itinerary-heading" className="font-display text-2xl sm:text-3xl font-semibold text-ink tracking-tight">
+            Day-by-day itinerary
           </h2>
-          <p className="text-sm text-ink-muted mt-1 max-w-lg">
-            {TRIP_META.tagline}. Tap a day to expand the timeline.
+          <p className="text-sm sm:text-base text-ink-muted mt-2 max-w-2xl leading-relaxed">
+            {TRIP_META.tagline} Select a day to view scheduled activities and
+            transit notes.
           </p>
         </div>
-        <div className="flex gap-2">
-          <button
-            type="button"
-            onClick={expandAll}
-            className="text-xs font-semibold px-3 py-1.5 rounded-full border border-border bg-white hover:border-matcha hover:text-matcha transition-colors"
-          >
+        <div className="flex gap-2 shrink-0">
+          <button type="button" onClick={expandAll} className={btnGhost}>
             Expand all
           </button>
-          <button
-            type="button"
-            onClick={collapseAll}
-            className="text-xs font-semibold px-3 py-1.5 rounded-full border border-border bg-white hover:border-sakura hover:text-sakura transition-colors"
-          >
+          <button type="button" onClick={collapseAll} className={btnGhost}>
             Collapse all
           </button>
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-5">
         {ITINERARY_DAYS.map((day) => (
           <DayCard
             key={day.id}
