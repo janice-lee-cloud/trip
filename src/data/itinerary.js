@@ -7,8 +7,6 @@ export const TRIP_META = {
   nights: 5,
   days: 6,
   eyebrow: "Couple's trip",
-  heroLine:
-    "A responsive travel app with a day-by-day itinerary, multi-currency budget tracking, and a visual journal across Kyushu.",
   tagline: "Six-day sample itinerary across western Japan.",
 };
 

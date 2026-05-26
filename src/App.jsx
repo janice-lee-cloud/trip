@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Header from "./components/Layout/Header";
-import HeroIntro from "./components/Layout/HeroIntro";
 import TabNav from "./components/Layout/TabNav";
 import FinanceTab from "./components/Finance/FinanceTab";
 import ItineraryTab from "./components/Itinerary/ItineraryTab";
@@ -12,7 +11,6 @@ export default function App() {
   return (
     <div className="min-h-dvh flex flex-col">
       <Header />
-      <HeroIntro />
       <TabNav active={activeTab} onChange={setActiveTab} />
       <main className="flex-1 mx-auto w-full max-w-5xl px-4 sm:px-6 py-6 sm:py-10">
         {activeTab === "itinerary" && <ItineraryTab />}
