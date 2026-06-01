@@ -1,9 +1,16 @@
 import { ChevronDown, Hotel } from "lucide-react";
 import { useLanguage } from "../../context/LanguageContext";
 import { formatDateShort } from "../../utils/format";
+import DayWeather from "./DayWeather";
 import TimelineItem from "./TimelineItem";
 
-export default function DayCard({ day, expanded, onToggle }) {
+export default function DayCard({
+  day,
+  expanded,
+  onToggle,
+  weather,
+  weatherStatus,
+}) {
   const { locale, t } = useLanguage();
 
   return (
@@ -23,6 +30,15 @@ export default function DayCard({ day, expanded, onToggle }) {
             loading="lazy"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/30 to-ink/10" />
+          <div className="absolute top-4 left-4 right-14 z-10">
+            <DayWeather
+              dayId={day.id}
+              forecast={weather}
+              status={weatherStatus}
+              locale={locale}
+              t={t}
+            />
+          </div>
           <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-cream">
             <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-white/80 mb-1.5">
               {t.dayLabel(day.dayNumber)} · {day.weekday} · {formatDateShort(day.date, locale)}

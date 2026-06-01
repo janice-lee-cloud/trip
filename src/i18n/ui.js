@@ -13,6 +13,10 @@ export const UI = {
       "Select a day to view scheduled activities and transit notes.",
     expandAll: "Expand all",
     collapseAll: "Collapse all",
+    weatherLoading: "Weather…",
+    weatherUnavailable: "Forecast N/A",
+    weatherAria: (condition, high, low, precip) =>
+      `Weather: ${condition}, high ${high} degrees, low ${low} degrees${precip ? `, ${precip} chance of rain` : ""}`,
     financeHeading: "Budget tracker",
     financeLead:
       "Monitor spending in Japanese yen with automatic conversion to your selected home currency. All figures persist in local storage.",
@@ -59,11 +63,8 @@ export const UI = {
     rateAria: (n) => `Rate ${n} out of 5`,
     imageTooLarge:
       "Please select an image under 2.5 MB for reliable local storage.",
-    footerTitle: "Kyushu Trip Planner — portfolio demonstration",
-    footerTech:
-      "Built with React, Vite, and Tailwind CSS · Data stored locally in your browser",
-    viewSource: "View source on GitHub",
-    liveDemo: "Live demo",
+    footerTitle: "Kyushu Trip Planner",
+    footerCopyright: "@ 2026 Ctt & Janice.",
     scrapbookDefaults: [
       {
         placeName: "Nakasu Yatai",
@@ -92,6 +93,10 @@ export const UI = {
     itineraryLead: "選擇日期以查看活動安排與交通備註。",
     expandAll: "全部展開",
     collapseAll: "全部收合",
+    weatherLoading: "天氣載入中…",
+    weatherUnavailable: "無法取得預報",
+    weatherAria: (condition, high, low, precip) =>
+      `天氣：${condition}，高溫 ${high} 度，低溫 ${low} 度${precip ? `，降雨機率 ${precip}` : ""}`,
     financeHeading: "預算追蹤",
     financeLead:
       "以日圓記錄支出，並自動換算為所選的本國貨幣。所有資料儲存於瀏覽器本機。",
@@ -137,10 +142,8 @@ export const UI = {
     ratingAria: (value) => `評分：${value} / 5`,
     rateAria: (n) => `評為 ${n} 分`,
     imageTooLarge: "請選擇小於 2.5 MB 的圖片，以確保本機儲存穩定。",
-    footerTitle: "九州行程規劃 — 作品集示範",
-    footerTech: "以 React、Vite、Tailwind CSS 建置 · 資料儲存於瀏覽器本機",
-    viewSource: "在 GitHub 查看原始碼",
-    liveDemo: "線上示範",
+    footerTitle: "Kyushu Trip Planner",
+    footerCopyright: "@ 2026 Ctt & Janice.",
     scrapbookDefaults: [
       {
         placeName: "中洲屋台",

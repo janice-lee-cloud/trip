@@ -21,26 +21,7 @@ export default function App() {
       </main>
       <footer className="border-t border-border bg-surface/50 py-8 text-center text-xs text-ink-muted space-y-2">
         <p className="font-medium text-ink">{t.footerTitle}</p>
-        <p>{t.footerTech}</p>
-        <p>
-          <a
-            href="https://github.com/janice-lee-cloud/trip"
-            className="text-accent-muted underline underline-offset-2 hover:text-ink transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm"
-            target="_blank"
-            rel="noreferrer"
-          >
-            {t.viewSource}
-          </a>
-          {" · "}
-          <a
-            href="https://janice-lee-cloud.github.io/trip/"
-            className="text-accent-muted underline underline-offset-2 hover:text-ink transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm"
-            target="_blank"
-            rel="noreferrer"
-          >
-            {t.liveDemo}
-          </a>
-        </p>
+        <p>{t.footerCopyright}</p>
       </footer>
     </div>
   );

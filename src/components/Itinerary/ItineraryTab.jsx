@@ -1,12 +1,14 @@
 import { useLanguage } from "../../context/LanguageContext";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
+import { useTripWeather } from "../../hooks/useTripWeather";
 import { btnGhost } from "../../utils/ui";
 import DayCard from "./DayCard";
 
 const EXPANDED_KEY = "japan-trip-expanded-days";
 
 export default function ItineraryTab() {
-  const { itineraryDays, tripMeta, t } = useLanguage();
+  const { itineraryDays, tripMeta, locale, t } = useLanguage();
+  const { weatherByDayId, status: weatherStatus } = useTripWeather(itineraryDays);
 
   const defaultExpanded = Object.fromEntries(
     itineraryDays.map((d) => [d.id, d.expanded ?? false]),
@@ -57,6 +59,8 @@ export default function ItineraryTab() {
             day={day}
             expanded={!!expandedMap[day.id]}
             onToggle={() => toggle(day.id)}
+            weather={weatherByDayId[day.id]}
+            weatherStatus={weatherStatus}
           />
         ))}
       </div>
