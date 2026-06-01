@@ -1,67 +1,108 @@
-# Japan 2026 — Couple's Trip Planner
+# Kyushu Trip Planner
 
-A single-page React app for your **6-day, 5-night Fukuoka trip** (June 4–9, 2026): expandable itinerary, budget tracker, and scrapbook wall.
+A installable web app for **CTT & Janice's** 6-day Kyushu trip (June 4–9, 2026): day-by-day itinerary, HKD budget tracker, and travel journal. Built with React, Vite, and Tailwind CSS.
 
-## Live website (anyone, any browser, any time)
-
-After you push to GitHub and enable Pages (one-time setup below), the site is public at:
+## Live site
 
 **https://janice-lee-cloud.github.io/trip/**
 
-Share that link — friends and family can open it in Chrome, Safari, Edge, or on a phone. Each person’s budget and scrapbook notes save in **their own browser** (localStorage).
+Share the link or **install it on your phone** like an app (see [Install as app](#install-as-app-pwa) below). Each visitor’s budget and journal entries are saved in **their own browser** (localStorage).
 
-### One-time GitHub setup
+## Features
 
-1. **Push your code** (see [Push to GitHub](#push-to-github) below).
-2. On GitHub: open **janice-lee-cloud/trip** → **Settings** → **Pages**.
-3. Under **Build and deployment**, set **Source** to **GitHub Actions** (not “Deploy from branch”).
-4. Push to `main` again (or re-run the **Deploy to GitHub Pages** workflow under **Actions**).
+- **Itinerary** — Itoshima, Kumamoto, weekday Yufuin, and Fukuoka days with detailed meals and activities
+- **Google Maps links** — tap any event title to open directions
+- **Restaurant picks** — famous local spots per meal with [Tabelog](https://tabelog.com) review links (Japan’s OpenRice-style guides)
+- **Weather** — daily forecast per area (Open-Meteo)
+- **English / 繁中** — language toggle in the header
+- **Budget** — track spending in JPY with live **HKD** conversion, default HK$20,000 budget, CSV export
+- **Journal** — places, ratings, notes, and photos (stored locally)
 
-The workflow in `.github/workflows/deploy-pages.yml` builds and publishes automatically on every push to `main`.
+## Install as app (PWA)
 
----
+The site can be added to your home screen and opens full-screen.
 
-## On your computer (development)
+| Device | How to install |
+|--------|----------------|
+| **iPhone (Safari)** | Share → **Add to Home Screen** |
+| **Android (Chrome)** | Menu → **Install app** / **Add to Home screen** |
+| **Desktop (Chrome / Edge)** | Install icon in the address bar |
+
+App icon: `public/images/app_icon.jpg`
+
+## Development
 
 ```bash
-cd /Users/leewaikiu/projects/trip
+git clone https://github.com/janice-lee-cloud/trip.git
+cd trip
+npm install
+npm run dev
+```
+
+Open **http://localhost:5173**. Do not open `index.html` from Finder — use the dev server.
+
+Alternatively:
+
+```bash
 ./start.sh
 ```
 
-Opens **http://localhost:5173** in your browser. Press `Ctrl+C` to stop.
-
-> Do not open `index.html` from Finder — use `start.sh` or `npm run dev`.
-
----
-
-## Push to GitHub
+### Build & preview
 
 ```bash
-cd /Users/leewaikiu/projects/trip
-git push -u origin main
+# Local / custom hosting (root path)
+npm run build
+npm run preview
+
+# GitHub Pages (base path /trip/)
+npm run build:pages
+npm run preview:pages
 ```
 
-- **Username:** `janice-lee-cloud`
-- **Password:** [personal access token](https://github.com/settings/tokens) with `repo` scope
+## Deploy to GitHub Pages
 
----
+1. Push to the `main` branch on **janice-lee-cloud/trip**.
+2. On GitHub: **Settings** → **Pages** → set **Source** to **GitHub Actions**.
+3. The workflow `.github/workflows/deploy-pages.yml` builds with `npm run build:pages` on every push to `main`.
 
-## Design
+## Tech stack
 
-- **Palette:** cream `#FDFBF7`, ink `#2C2C2C`, sakura `#E8A7A1`, matcha `#8AA38B`, gold `#D4AF37`
-- **Fonts:** Plus Jakarta Sans + Playfair Display
-- **Icons:** Lucide React
+- React 19 · Vite 6 · Tailwind CSS 4
+- [vite-plugin-pwa](https://vite-plugin-pwa.netlify.app/) — installable app + offline caching
+- Lucide React icons
+- Fonts: Plus Jakarta Sans + Cormorant Garamond
 
 ## Project structure
 
 ```
+public/
+  images/              # trip photos + app_icon.jpg (PWA icon)
 src/
-├── App.jsx
-├── data/itinerary.js       # June 4–9 schedule
-├── hooks/useLocalStorage.js
-└── components/
-    ├── Layout/
-    ├── Itinerary/
-    ├── Finance/
-    └── Scrapbook/
+  App.jsx
+  data/
+    itinerary.js       # June 4–9 schedule
+    mealRestaurants.js # restaurant picks per meal
+    weatherLocations.js
+  context/
+    LanguageContext.jsx
+  hooks/
+    useLocalStorage.js
+    useExchangeRate.js
+    useTripWeather.js
+  i18n/                # English + Traditional Chinese
+  components/
+    Layout/
+    Itinerary/
+    Finance/
+    Scrapbook/
+  utils/
 ```
+
+## Design
+
+- **Palette:** cream, ink, sakura, matcha, gold accents
+- **UI:** card-based layout, sticky header, tab navigation
+
+## License
+
+Private trip planner — © 2026 CTT & Janice.
