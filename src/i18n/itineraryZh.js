@@ -1,5 +1,5 @@
 export const TRIP_META_ZH = {
-  title: "福岡與周邊",
+  title: "福岡",
   subtitle: "博多 · 糸島 · 熊本 · 由布院",
   dates: "2026年6月4日 – 9日",
   eyebrow: "CTT 與 Janice 之旅",
