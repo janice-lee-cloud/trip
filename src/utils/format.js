@@ -15,8 +15,9 @@ export function formatLocal(amount, currencyCode = "USD") {
   }).format(amount ?? 0);
 }
 
-export function formatDateShort(iso) {
-  return new Date(iso + "T12:00:00").toLocaleDateString("en-US", {
+export function formatDateShort(iso, locale = "en") {
+  const tag = locale === "zh-TW" ? "zh-TW" : "en-US";
+  return new Date(iso + "T12:00:00").toLocaleDateString(tag, {
     month: "short",
     day: "numeric",
   });

@@ -4,9 +4,11 @@ import TabNav from "./components/Layout/TabNav";
 import FinanceTab from "./components/Finance/FinanceTab";
 import ItineraryTab from "./components/Itinerary/ItineraryTab";
 import ScrapbookTab from "./components/Scrapbook/ScrapbookTab";
+import { useLanguage } from "./context/LanguageContext";
 
 export default function App() {
   const [activeTab, setActiveTab] = useState("itinerary");
+  const { t } = useLanguage();
 
   return (
     <div className="min-h-dvh flex flex-col">
@@ -18,13 +20,8 @@ export default function App() {
         {activeTab === "scrapbook" && <ScrapbookTab />}
       </main>
       <footer className="border-t border-border bg-surface/50 py-8 text-center text-xs text-ink-muted space-y-2">
-        <p className="font-medium text-ink">
-          Kyushu Trip Planner — portfolio demonstration
-        </p>
-        <p>
-          Built with React, Vite, and Tailwind CSS · Data stored locally in your
-          browser
-        </p>
+        <p className="font-medium text-ink">{t.footerTitle}</p>
+        <p>{t.footerTech}</p>
         <p>
           <a
             href="https://github.com/janice-lee-cloud/trip"
@@ -32,7 +29,7 @@ export default function App() {
             target="_blank"
             rel="noreferrer"
           >
-            View source on GitHub
+            {t.viewSource}
           </a>
           {" · "}
           <a
@@ -41,7 +38,7 @@ export default function App() {
             target="_blank"
             rel="noreferrer"
           >
-            Live demo
+            {t.liveDemo}
           </a>
         </p>
       </footer>

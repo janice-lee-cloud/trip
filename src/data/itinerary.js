@@ -6,7 +6,7 @@ export const TRIP_META = {
   dates: "June 4 – 9, 2026",
   nights: 5,
   days: 6,
-  eyebrow: "Couple's trip",
+  eyebrow: "CTT & Janice's trip",
   tagline: "Six-day sample itinerary across western Japan.",
 };
 

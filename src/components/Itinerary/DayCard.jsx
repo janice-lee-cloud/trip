@@ -1,8 +1,11 @@
 import { ChevronDown, Hotel } from "lucide-react";
+import { useLanguage } from "../../context/LanguageContext";
 import { formatDateShort } from "../../utils/format";
 import TimelineItem from "./TimelineItem";
 
 export default function DayCard({ day, expanded, onToggle }) {
+  const { locale, t } = useLanguage();
+
   return (
     <article className="card overflow-hidden">
       <button
@@ -22,7 +25,7 @@ export default function DayCard({ day, expanded, onToggle }) {
           <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/30 to-ink/10" />
           <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-cream">
             <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-white/80 mb-1.5">
-              Day {day.dayNumber} · {day.weekday} · {formatDateShort(day.date)}
+              {t.dayLabel(day.dayNumber)} · {day.weekday} · {formatDateShort(day.date, locale)}
             </p>
             <h3 className="font-display text-xl sm:text-2xl font-semibold leading-tight">
               {day.label}

@@ -1,19 +1,22 @@
 import { BookOpen, CalendarDays, Wallet } from "lucide-react";
-
-const TABS = [
-  { id: "itinerary", label: "Itinerary", icon: CalendarDays },
-  { id: "finance", label: "Budget", icon: Wallet },
-  { id: "scrapbook", label: "Journal", icon: BookOpen },
-];
+import { useLanguage } from "../../context/LanguageContext";
 
 export default function TabNav({ active, onChange }) {
+  const { t } = useLanguage();
+
+  const tabs = [
+    { id: "itinerary", label: t.tabItinerary, icon: CalendarDays },
+    { id: "finance", label: t.tabFinance, icon: Wallet },
+    { id: "scrapbook", label: t.tabScrapbook, icon: BookOpen },
+  ];
+
   return (
     <nav
       className="mx-auto max-w-5xl px-4 sm:px-6 pt-4 sm:pt-5"
-      aria-label="Main sections"
+      aria-label={t.mainNavAria}
     >
       <div className="flex gap-1 p-1 rounded-2xl border border-border bg-surface/80 shadow-card">
-        {TABS.map(({ id, label, icon: Icon }) => {
+        {tabs.map(({ id, label, icon: Icon }) => {
           const isActive = active === id;
           return (
             <button

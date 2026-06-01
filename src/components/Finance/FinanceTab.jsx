@@ -1,5 +1,7 @@
 import { Plus, TrendingDown, TrendingUp, Wallet } from "lucide-react";
 import { useMemo } from "react";
+import { useLanguage } from "../../context/LanguageContext";
+import { translateFinanceCategory } from "../../i18n/ui";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { formatJPY, formatLocal, uid } from "../../utils/format";
 import { btnPrimary, inputClass, sectionHeading, sectionLead } from "../../utils/ui";
@@ -16,6 +18,7 @@ const DEFAULT_FINANCE = {
 };
 
 export default function FinanceTab() {
+  const { locale, t } = useLanguage();
   const [finance, setFinance] = useLocalStorage(FINANCE_KEY, DEFAULT_FINANCE);
 
   const totalSpent = useMemo(
@@ -66,29 +69,26 @@ export default function FinanceTab() {
     <section className="space-y-8" aria-labelledby="finance-heading">
       <div>
         <h2 id="finance-heading" className={sectionHeading}>
-          Budget tracker
+          {t.financeHeading}
         </h2>
-        <p className={sectionLead}>
-          Monitor spending in Japanese yen with automatic conversion to your
-          selected home currency. All figures persist in local storage.
-        </p>
+        <p className={sectionLead}>{t.financeLead}</p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-3">
         <BudgetCard
-          label="Total budget"
+          label={t.totalBudget}
           value={formatJPY(finance.budgetJPY)}
           icon={Wallet}
           accent="matcha"
         />
         <BudgetCard
-          label="Total spent"
+          label={t.totalSpent}
           value={formatJPY(totalSpent)}
           icon={TrendingDown}
           accent="accent"
         />
         <BudgetCard
-          label="Remaining"
+          label={t.remaining}
           value={formatJPY(remaining)}
           icon={TrendingUp}
           accent={remaining >= 0 ? "gold" : "accent"}
@@ -98,7 +98,7 @@ export default function FinanceTab() {
 
       <div className="card p-4 sm:p-5">
         <div className="flex justify-between text-xs font-semibold text-ink-muted mb-2">
-          <span>Budget utilization</span>
+          <span>{t.budgetUtilization}</span>
           <span className="tabular-nums">{spentPct.toFixed(0)}%</span>
         </div>
         <div
@@ -116,11 +116,11 @@ export default function FinanceTab() {
       </div>
 
       <div className="card p-4 sm:p-6">
-        <h3 className="text-sm font-semibold text-ink mb-4">Currency settings</h3>
+        <h3 className="text-sm font-semibold text-ink mb-4">{t.currencySettings}</h3>
         <div className="grid gap-4 sm:grid-cols-3">
           <label className="block">
             <span className="text-xs font-semibold text-ink-muted uppercase tracking-wide">
-              Budget (JPY)
+              {t.budgetJpy}
             </span>
             <input
               type="number"
@@ -135,7 +135,7 @@ export default function FinanceTab() {
           </label>
           <label className="block">
             <span className="text-xs font-semibold text-ink-muted uppercase tracking-wide">
-              Home currency
+              {t.homeCurrency}
             </span>
             <select
               value={finance.currencyCode}
@@ -152,7 +152,7 @@ export default function FinanceTab() {
           </label>
           <label className="block">
             <span className="text-xs font-semibold text-ink-muted uppercase tracking-wide">
-              Rate (1 JPY → {finance.currencyCode})
+              {t.exchangeRate(finance.currencyCode)}
             </span>
             <input
               type="number"
@@ -171,23 +171,23 @@ export default function FinanceTab() {
       <form onSubmit={handleAddExpense} className="card p-4 sm:p-6">
         <h3 className="text-sm font-semibold text-ink mb-4 flex items-center gap-2">
           <Plus className="h-4 w-4 text-matcha" strokeWidth={2} aria-hidden />
-          Add expense
+          {t.addExpense}
         </h3>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 items-end">
           <label className="block sm:col-span-2">
             <span className="text-xs font-semibold text-ink-muted uppercase tracking-wide">
-              Description
+              {t.description}
             </span>
             <input
               name="name"
               required
-              placeholder="e.g. Nakasu ramen dinner"
+              placeholder={t.expensePlaceholder}
               className={`${inputClass} mt-1.5`}
             />
           </label>
           <label className="block">
             <span className="text-xs font-semibold text-ink-muted uppercase tracking-wide">
-              Amount (JPY)
+              {t.amountJpy}
             </span>
             <input
               name="amount"
@@ -200,19 +200,19 @@ export default function FinanceTab() {
           </label>
           <label className="block">
             <span className="text-xs font-semibold text-ink-muted uppercase tracking-wide">
-              Category
+              {t.category}
             </span>
             <select name="category" className={`${inputClass} mt-1.5`}>
               {CATEGORIES.map((c) => (
                 <option key={c} value={c}>
-                  {c}
+                  {translateFinanceCategory(locale, c)}
                 </option>
               ))}
             </select>
           </label>
           <button type="submit" className={`${btnPrimary} sm:col-span-2 lg:col-span-4`}>
             <Plus className="h-4 w-4" aria-hidden />
-            Add expense
+            {t.addExpense}
           </button>
         </div>
       </form>
@@ -222,8 +222,8 @@ export default function FinanceTab() {
           <table className="w-full text-sm text-left min-w-[520px]">
             <thead>
               <tr className="border-b border-border bg-cream/90 text-xs uppercase tracking-wide text-ink-muted">
-                <th className="px-4 py-3.5 font-semibold">Description</th>
-                <th className="px-4 py-3.5 font-semibold">Category</th>
+                <th className="px-4 py-3.5 font-semibold">{t.description}</th>
+                <th className="px-4 py-3.5 font-semibold">{t.category}</th>
                 <th className="px-4 py-3.5 font-semibold text-right">JPY</th>
                 <th className="px-4 py-3.5 font-semibold text-right">
                   {finance.currencyCode}
@@ -235,7 +235,7 @@ export default function FinanceTab() {
               {finance.expenses.length === 0 ? (
                 <tr>
                   <td colSpan={5} className="px-4 py-12 text-center text-ink-muted">
-                    No expenses recorded. Add your first entry above.
+                    {t.noExpenses}
                   </td>
                 </tr>
               ) : (
@@ -248,7 +248,7 @@ export default function FinanceTab() {
                     >
                       <td className="px-4 py-3.5 font-medium text-ink">{ex.name}</td>
                       <td className="px-4 py-3.5">
-                        <CategoryPill category={ex.category} />
+                        <CategoryPill category={ex.category} locale={locale} />
                       </td>
                       <td className="px-4 py-3.5 text-right tabular-nums font-medium">
                         {formatJPY(ex.amountJPY)}
@@ -261,9 +261,9 @@ export default function FinanceTab() {
                           type="button"
                           onClick={() => removeExpense(ex.id)}
                           className="text-xs font-semibold text-ink-muted hover:text-accent transition-colors focus:outline-none focus-visible:underline"
-                          aria-label={`Remove ${ex.name}`}
+                          aria-label={t.removeExpenseAria(ex.name)}
                         >
-                          Remove
+                          {t.remove}
                         </button>
                       </td>
                     </tr>
@@ -306,7 +306,7 @@ function BudgetCard({ label, value, icon: Icon, accent, warn }) {
   );
 }
 
-function CategoryPill({ category }) {
+function CategoryPill({ category, locale }) {
   const colors = {
     Food: "bg-accent-soft text-accent-muted",
     Transit: "bg-gold-soft text-gold",
@@ -314,11 +314,12 @@ function CategoryPill({ category }) {
     Shopping: "bg-matcha-soft text-matcha",
     Other: "bg-cream text-ink-muted border border-border",
   };
+  const label = translateFinanceCategory(locale, category);
   return (
     <span
       className={`inline-block rounded-full px-2.5 py-0.5 text-xs font-semibold ${colors[category] ?? colors.Other}`}
     >
-      {category}
+      {label}
     </span>
   );
 }

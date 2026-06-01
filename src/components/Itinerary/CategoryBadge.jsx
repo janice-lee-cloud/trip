@@ -1,7 +1,9 @@
-import { CATEGORY_STYLES } from "../../data/itinerary";
+import { useLanguage } from "../../context/LanguageContext";
 
 export default function CategoryBadge({ category }) {
-  const style = CATEGORY_STYLES[category] ?? CATEGORY_STYLES.sightseeing;
+  const { categoryStyles } = useLanguage();
+  const style = categoryStyles[category] ?? categoryStyles.sightseeing;
+
   return (
     <span
       className={[
