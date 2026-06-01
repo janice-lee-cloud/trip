@@ -6,12 +6,23 @@ export function formatJPY(amount) {
   }).format(amount ?? 0);
 }
 
-export function formatLocal(amount, currencyCode = "USD") {
-  return new Intl.NumberFormat("en-US", {
+const LOCALES = {
+  HKD: "zh-HK",
+  USD: "en-US",
+  EUR: "de-DE",
+  GBP: "en-GB",
+  AUD: "en-AU",
+  SGD: "en-SG",
+};
+
+export function formatLocal(amount, currencyCode = "HKD") {
+  const locale = LOCALES[currencyCode] ?? "en-US";
+  const zeroDecimal = currencyCode === "HKD" || currencyCode === "JPY";
+  return new Intl.NumberFormat(locale, {
     style: "currency",
     currency: currencyCode,
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
+    minimumFractionDigits: zeroDecimal ? 0 : 2,
+    maximumFractionDigits: zeroDecimal ? 0 : 2,
   }).format(amount ?? 0);
 }
 

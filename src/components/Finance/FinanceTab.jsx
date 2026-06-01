@@ -1,10 +1,12 @@
-import { Plus, TrendingDown, TrendingUp, Wallet } from "lucide-react";
+import { Download, Loader2, Plus, TrendingDown, TrendingUp, Wallet } from "lucide-react";
 import { useMemo } from "react";
 import { useLanguage } from "../../context/LanguageContext";
 import { translateFinanceCategory } from "../../i18n/ui";
+import { useExchangeRate, homeToJpy, jpyToHome } from "../../hooks/useExchangeRate";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { formatJPY, formatLocal, uid } from "../../utils/format";
-import { btnPrimary, inputClass, sectionHeading, sectionLead } from "../../utils/ui";
+import { buildBudgetCsv, downloadBudgetCsv } from "../../utils/exportBudgetCsv";
+import { btnPrimary, btnSecondary, inputClass, sectionHeading, sectionLead } from "../../utils/ui";
 
 const FINANCE_KEY = "japan-trip-finance";
 
@@ -12,14 +14,39 @@ const CATEGORIES = ["Food", "Transit", "Hotel", "Shopping", "Other"];
 
 const DEFAULT_FINANCE = {
   budgetJPY: 350000,
-  currencyCode: "USD",
-  exchangeRate: 0.0067,
+  currencyCode: "HKD",
+  budgetInputMode: "home",
   expenses: [],
 };
 
+function normalizeFinance(stored) {
+  const merged = { ...DEFAULT_FINANCE, ...stored };
+  const mode = merged.budgetInputMode;
+  if (mode === "JPY") merged.budgetInputMode = "jpy";
+  else if (!["jpy", "home"].includes(mode)) {
+    merged.budgetInputMode = DEFAULT_FINANCE.budgetInputMode;
+  }
+  delete merged.exchangeRate;
+  return merged;
+}
+
 export default function FinanceTab() {
   const { locale, t } = useLanguage();
-  const [finance, setFinance] = useLocalStorage(FINANCE_KEY, DEFAULT_FINANCE);
+  const [rawFinance, setRawFinance] = useLocalStorage(FINANCE_KEY, DEFAULT_FINANCE);
+  const finance = useMemo(() => normalizeFinance(rawFinance), [rawFinance]);
+
+  const { rate, rateDate, status: rateStatus, isFallback } = useExchangeRate(
+    finance.currencyCode,
+  );
+
+  const setFinance = (patch) => {
+    setRawFinance((prev) => {
+      const current = normalizeFinance(prev);
+      const next =
+        typeof patch === "function" ? patch(current) : { ...current, ...patch };
+      return normalizeFinance(next);
+    });
+  };
 
   const totalSpent = useMemo(
     () => finance.expenses.reduce((sum, e) => sum + (Number(e.amountJPY) || 0), 0),
@@ -31,9 +58,35 @@ export default function FinanceTab() {
     ? Math.min(100, (totalSpent / finance.budgetJPY) * 100)
     : 0;
 
-  const updateFinance = (patch) => {
-    setFinance((prev) => ({ ...prev, ...patch }));
+  const budgetHome = jpyToHome(finance.budgetJPY, rate);
+  const spentHome = jpyToHome(totalSpent, rate);
+  const remainingHome = jpyToHome(remaining, rate);
+
+  const updateFinance = (patch) => setFinance(patch);
+
+  const handleBudgetChange = (value) => {
+    if (value === "") return;
+    const num = Number(value);
+    if (Number.isNaN(num) || num < 0) return;
+
+    if (finance.budgetInputMode === "home" && rate) {
+      updateFinance({ budgetJPY: homeToJpy(num, rate) });
+    } else {
+      updateFinance({ budgetJPY: Math.round(num) });
+    }
   };
+
+  const budgetInputValue =
+    finance.budgetInputMode === "home" && rate
+      ? Math.round(budgetHome) || ""
+      : finance.budgetJPY || "";
+
+  const budgetConversionHint =
+    rate && finance.budgetInputMode === "jpy"
+      ? t.budgetEquals(formatLocal(budgetHome, finance.currencyCode))
+      : rate && finance.budgetInputMode === "home"
+        ? t.budgetEquals(formatJPY(finance.budgetJPY))
+        : null;
 
   const handleAddExpense = (e) => {
     e.preventDefault();
@@ -65,6 +118,23 @@ export default function FinanceTab() {
     });
   };
 
+  const handleExportCsv = () => {
+    const csv = buildBudgetCsv({
+      finance,
+      rate,
+      rateDate,
+      isFallback,
+      rateStatus,
+      totalSpent,
+      remaining,
+      spentPct,
+      locale,
+      labels: t.csvExport,
+    });
+    const dateStamp = new Date().toISOString().slice(0, 10);
+    downloadBudgetCsv(csv, `kyushu-trip-budget-${dateStamp}.csv`);
+  };
+
   return (
     <section className="space-y-8" aria-labelledby="finance-heading">
       <div>
@@ -77,19 +147,26 @@ export default function FinanceTab() {
       <div className="grid gap-4 sm:grid-cols-3">
         <BudgetCard
           label={t.totalBudget}
-          value={formatJPY(finance.budgetJPY)}
+          primary={formatJPY(finance.budgetJPY)}
+          secondary={
+            rate ? formatLocal(budgetHome, finance.currencyCode) : null
+          }
           icon={Wallet}
           accent="matcha"
         />
         <BudgetCard
           label={t.totalSpent}
-          value={formatJPY(totalSpent)}
+          primary={formatJPY(totalSpent)}
+          secondary={rate ? formatLocal(spentHome, finance.currencyCode) : null}
           icon={TrendingDown}
           accent="accent"
         />
         <BudgetCard
           label={t.remaining}
-          value={formatJPY(remaining)}
+          primary={formatJPY(remaining)}
+          secondary={
+            rate ? formatLocal(remainingHome, finance.currencyCode) : null
+          }
           icon={TrendingUp}
           accent={remaining >= 0 ? "gold" : "accent"}
           warn={remaining < 0}
@@ -115,24 +192,10 @@ export default function FinanceTab() {
         </div>
       </div>
 
-      <div className="card p-4 sm:p-6">
-        <h3 className="text-sm font-semibold text-ink mb-4">{t.currencySettings}</h3>
-        <div className="grid gap-4 sm:grid-cols-3">
-          <label className="block">
-            <span className="text-xs font-semibold text-ink-muted uppercase tracking-wide">
-              {t.budgetJpy}
-            </span>
-            <input
-              type="number"
-              min={0}
-              step={1000}
-              value={finance.budgetJPY}
-              onChange={(e) =>
-                updateFinance({ budgetJPY: Number(e.target.value) || 0 })
-              }
-              className={`${inputClass} mt-1.5`}
-            />
-          </label>
+      <div className="card p-4 sm:p-6 space-y-4">
+        <h3 className="text-sm font-semibold text-ink">{t.currencySettings}</h3>
+
+        <div className="grid gap-4 sm:grid-cols-2">
           <label className="block">
             <span className="text-xs font-semibold text-ink-muted uppercase tracking-wide">
               {t.homeCurrency}
@@ -142,29 +205,97 @@ export default function FinanceTab() {
               onChange={(e) => updateFinance({ currencyCode: e.target.value })}
               className={`${inputClass} mt-1.5`}
             >
-              <option value="USD">USD</option>
               <option value="HKD">HKD</option>
+              <option value="USD">USD</option>
               <option value="EUR">EUR</option>
               <option value="GBP">GBP</option>
               <option value="AUD">AUD</option>
               <option value="SGD">SGD</option>
             </select>
           </label>
-          <label className="block">
+
+          <div className="block">
             <span className="text-xs font-semibold text-ink-muted uppercase tracking-wide">
-              {t.exchangeRate(finance.currencyCode)}
+              {t.liveExchangeRate}
             </span>
-            <input
-              type="number"
-              min={0}
-              step={0.0001}
-              value={finance.exchangeRate}
-              onChange={(e) =>
-                updateFinance({ exchangeRate: Number(e.target.value) || 0 })
-              }
-              className={`${inputClass} mt-1.5`}
-            />
-          </label>
+            <div className="mt-1.5 rounded-xl border border-border bg-cream/80 px-3 py-2.5 text-sm text-ink-muted min-h-[42px] flex items-center gap-2">
+              {rateStatus === "loading" && (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin shrink-0" aria-hidden />
+                  {t.rateLoading}
+                </>
+              )}
+              {rateStatus === "ready" && rate != null && (
+                <span>
+                  {t.rateLine(finance.currencyCode, rate, rateDate)}
+                  {isFallback && (
+                    <span className="block text-[11px] mt-0.5 text-gold">
+                      {t.rateFallback}
+                    </span>
+                  )}
+                </span>
+              )}
+              {rateStatus === "error" && (
+                <span>{t.rateUnavailable}</span>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div className="flex flex-col sm:flex-row sm:items-end gap-3">
+            <label className="block flex-1">
+              <span className="text-xs font-semibold text-ink-muted uppercase tracking-wide">
+                {finance.budgetInputMode === "home"
+                  ? t.budgetHome(finance.currencyCode)
+                  : t.budgetJpy}
+              </span>
+              <input
+                type="number"
+                min={0}
+                step={finance.budgetInputMode === "home" ? 100 : 1000}
+                value={budgetInputValue}
+                onChange={(e) => handleBudgetChange(e.target.value)}
+                className={`${inputClass} mt-1.5`}
+              />
+            </label>
+            <div className="shrink-0">
+              <span className="text-xs font-semibold text-ink-muted uppercase tracking-wide block mb-1.5">
+                {t.budgetInputAs}
+              </span>
+              <div className="flex gap-1 p-1 rounded-xl border border-border bg-cream/60">
+                <button
+                  type="button"
+                  onClick={() => updateFinance({ budgetInputMode: "jpy" })}
+                  className={[
+                    "px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors",
+                    finance.budgetInputMode === "jpy"
+                      ? "bg-ink text-cream"
+                      : "text-ink-muted hover:text-ink",
+                  ].join(" ")}
+                >
+                  JPY
+                </button>
+                <button
+                  type="button"
+                  onClick={() => updateFinance({ budgetInputMode: "home" })}
+                  className={[
+                    "px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors",
+                    finance.budgetInputMode === "home"
+                      ? "bg-ink text-cream"
+                      : "text-ink-muted hover:text-ink",
+                  ].join(" ")}
+                >
+                  {finance.currencyCode}
+                </button>
+              </div>
+            </div>
+          </div>
+          {budgetConversionHint && (
+            <p className="mt-2 text-xs text-ink-muted tabular-nums">
+              {budgetConversionHint}
+            </p>
+          )}
         </div>
       </div>
 
@@ -240,7 +371,7 @@ export default function FinanceTab() {
                 </tr>
               ) : (
                 finance.expenses.map((ex) => {
-                  const local = ex.amountJPY * finance.exchangeRate;
+                  const local = jpyToHome(ex.amountJPY, rate);
                   return (
                     <tr
                       key={ex.id}
@@ -254,7 +385,9 @@ export default function FinanceTab() {
                         {formatJPY(ex.amountJPY)}
                       </td>
                       <td className="px-4 py-3.5 text-right tabular-nums text-ink-muted">
-                        {formatLocal(local, finance.currencyCode)}
+                        {rate
+                          ? formatLocal(local, finance.currencyCode)
+                          : "—"}
                       </td>
                       <td className="px-4 py-3.5">
                         <button
@@ -274,11 +407,22 @@ export default function FinanceTab() {
           </table>
         </div>
       </div>
+
+      <div className="flex justify-center pt-2">
+        <button
+          type="button"
+          onClick={handleExportCsv}
+          className={btnSecondary}
+        >
+          <Download className="h-4 w-4" strokeWidth={1.75} aria-hidden />
+          {t.exportCsv}
+        </button>
+      </div>
     </section>
   );
 }
 
-function BudgetCard({ label, value, icon: Icon, accent, warn }) {
+function BudgetCard({ label, primary, secondary, icon: Icon, accent, warn }) {
   const accents = {
     matcha: "text-matcha bg-matcha-soft",
     accent: "text-accent-muted bg-accent-soft",
@@ -300,8 +444,11 @@ function BudgetCard({ label, value, icon: Icon, accent, warn }) {
           warn ? "text-accent" : "text-ink",
         ].join(" ")}
       >
-        {value}
+        {primary}
       </p>
+      {secondary != null && (
+        <p className="mt-0.5 text-sm text-ink-muted tabular-nums">{secondary}</p>
+      )}
     </div>
   );
 }

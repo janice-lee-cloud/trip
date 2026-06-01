@@ -1,21 +1,20 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 export function useLocalStorage(key, initialValue) {
+  const initialRef = useRef(initialValue);
+  initialRef.current = initialValue;
+
   const read = useCallback(() => {
     try {
       const raw = localStorage.getItem(key);
-      if (raw == null) return initialValue;
+      if (raw == null) return initialRef.current;
       return JSON.parse(raw);
     } catch {
-      return initialValue;
+      return initialRef.current;
     }
-  }, [key, initialValue]);
+  }, [key]);
 
   const [stored, setStored] = useState(read);
-
-  useEffect(() => {
-    setStored(read());
-  }, [read]);
 
   const setValue = useCallback(
     (value) => {
