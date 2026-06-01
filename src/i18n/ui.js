@@ -70,12 +70,12 @@ export const UI = {
         thoughts: "Classic Hakata tonkotsu ramen at the riverside stalls.",
       },
       {
-        placeName: "Miyajima Island",
-        thoughts: "The floating torii gate and shoreline walk at golden hour.",
+        placeName: "Sakurai Futamigaura, Itoshima",
+        thoughts: "Couple rocks torii and breezy beach on the west coast.",
       },
       {
         placeName: "Yunotsubo Street, Yufuin",
-        thoughts: "Boutique shopping and matcha desserts along the main street.",
+        thoughts: "Weekday stroll with cheese rolls and Lake Kinrin at golden hour.",
       },
     ],
   },
@@ -147,12 +147,12 @@ export const UI = {
         thoughts: "河邊露天攤的經典博多豚骨拉麵。",
       },
       {
-        placeName: "宮島",
-        thoughts: "海上大鳥居與黃昏時分的海岸散步。",
+        placeName: "櫻井二見浦（糸島）",
+        thoughts: "夫婦岩鳥居與西海岸的海風，午後光線很美。",
       },
       {
         placeName: "由布院湯之坪街道",
-        thoughts: "主街上的精品店與抹茶甜點。",
+        thoughts: "平日漫步、起司捲與金鱗湖黃昏。",
       },
     ],
   },

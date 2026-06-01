@@ -12,6 +12,7 @@ import {
   Train,
   Utensils,
 } from "lucide-react";
+import { googleMapsUrl } from "../../utils/maps";
 import CategoryBadge from "./CategoryBadge";
 
 const ICONS = {
@@ -32,6 +33,7 @@ const ICONS = {
 
 export default function TimelineItem({ event, isLast }) {
   const Icon = ICONS[event.icon] ?? Landmark;
+  const mapsHref = googleMapsUrl(event.mapsQuery);
 
   return (
     <li className="relative flex gap-4 pb-6 last:pb-0">
@@ -68,7 +70,18 @@ export default function TimelineItem({ event, isLast }) {
           <CategoryBadge category={event.category} />
         </div>
         <h4 className="font-semibold text-ink text-[15px] leading-snug">
-          {event.title}
+          {mapsHref ? (
+            <a
+              href={mapsHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline decoration-accent/35 underline-offset-2 hover:text-accent hover:decoration-accent transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm"
+            >
+              {event.title}
+            </a>
+          ) : (
+            event.title
+          )}
         </h4>
         <p className="mt-1 text-sm text-ink-muted leading-relaxed">
           {event.description}
