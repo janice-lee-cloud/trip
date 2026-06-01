@@ -8,15 +8,37 @@ import { formatJPY, formatLocal, uid } from "../../utils/format";
 import { buildBudgetCsv, downloadBudgetCsv } from "../../utils/exportBudgetCsv";
 import { btnPrimary, btnSecondary, inputClass, sectionHeading, sectionLead } from "../../utils/ui";
 
-const FINANCE_KEY = "japan-trip-finance";
+const FINANCE_KEY = "japan-trip-finance-v2";
 
 const CATEGORIES = ["Food", "Transit", "Hotel", "Shopping", "Other"];
 
+/** Seed rate so default HKD amounts round-trip cleanly in the UI (~May 2026). */
+const SEED_HKD_PER_JPY = 0.0492;
+
+function hkdToJpy(hkd) {
+  return Math.round(hkd / SEED_HKD_PER_JPY);
+}
+
 const DEFAULT_FINANCE = {
-  budgetJPY: 350000,
+  budgetJPY: hkdToJpy(30000),
   currencyCode: "HKD",
   budgetInputMode: "home",
-  expenses: [],
+  expenses: [
+    {
+      id: "exp-default-onsen-hotel",
+      name: "福岡天然温泉博多運河城前多米高級酒店",
+      amountJPY: hkdToJpy(845.53),
+      category: "Hotel",
+      createdAt: "2026-05-13T10:00:00.000Z",
+    },
+    {
+      id: "exp-default-flight-trad",
+      name: "flight ticket + Hotel Trad Hakata",
+      amountJPY: hkdToJpy(10914.49),
+      category: "Hotel",
+      createdAt: "2026-05-13T10:30:00.000Z",
+    },
+  ],
 };
 
 function normalizeFinance(stored) {
