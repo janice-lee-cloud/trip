@@ -17,6 +17,9 @@ export const UI = {
     weatherUnavailable: "Forecast N/A",
     weatherAria: (condition, high, low, precip) =>
       `Weather: ${condition}, high ${high} degrees, low ${low} degrees${precip ? `, ${precip} chance of rain` : ""}`,
+    restaurantPicks: "Restaurant picks",
+    openMap: "Map",
+    viewOnTabelog: "Tabelog",
     financeHeading: "Budget tracker",
     financeLead:
       "Monitor spending in Japanese yen with automatic conversion to your selected home currency. All figures persist in local storage.",
@@ -97,6 +100,9 @@ export const UI = {
     weatherUnavailable: "無法取得預報",
     weatherAria: (condition, high, low, precip) =>
       `天氣：${condition}，高溫 ${high} 度，低溫 ${low} 度${precip ? `，降雨機率 ${precip}` : ""}`,
+    restaurantPicks: "推薦餐廳",
+    openMap: "地圖",
+    viewOnTabelog: "食べログ",
     financeHeading: "預算追蹤",
     financeLead:
       "以日圓記錄支出，並自動換算為所選的本國貨幣。所有資料儲存於瀏覽器本機。",

@@ -12,8 +12,10 @@ import {
   Train,
   Utensils,
 } from "lucide-react";
+import { useLanguage } from "../../context/LanguageContext";
 import { googleMapsUrl } from "../../utils/maps";
 import CategoryBadge from "./CategoryBadge";
+import RestaurantList from "./RestaurantList";
 
 const ICONS = {
   plane: Plane,
@@ -31,9 +33,11 @@ const ICONS = {
   heart: Heart,
 };
 
-export default function TimelineItem({ event, isLast }) {
+export default function TimelineItem({ dayId, event, isLast }) {
+  const { locale, t } = useLanguage();
   const Icon = ICONS[event.icon] ?? Landmark;
   const mapsHref = googleMapsUrl(event.mapsQuery);
+  const showRestaurants = event.category === "food";
 
   return (
     <li className="relative flex gap-4 pb-6 last:pb-0">
@@ -86,6 +90,14 @@ export default function TimelineItem({ event, isLast }) {
         <p className="mt-1 text-sm text-ink-muted leading-relaxed">
           {event.description}
         </p>
+        {showRestaurants && (
+          <RestaurantList
+            dayId={dayId}
+            eventTime={event.time}
+            locale={locale}
+            t={t}
+          />
+        )}
       </article>
     </li>
   );

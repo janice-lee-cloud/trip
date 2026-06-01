@@ -65,15 +65,6 @@ export const ITINERARY_DAYS = [
         mapsQuery: "Hotel Trad Hakata Fukuoka",
       },
       {
-        time: "19:00",
-        title: "Snacks at Lawson Sumiyoshi",
-        description:
-          "Quick conbini stop for water, onigiri, or pudding if you want something light before the main dinner.",
-        category: "food",
-        icon: "store",
-        mapsQuery: "Lawson Sumiyoshi Hakata Fukuoka",
-      },
-      {
         time: "20:00",
         title: "Nakasu Yatai",
         description:
@@ -313,13 +304,14 @@ export const ITINERARY_DAYS = [
         mapsQuery: "Ohori Park Fukuoka",
       },
       {
-        time: "12:30",
-        title: "Lunch — Tenjin",
+        time: "12:00",
+        title: "Lunch — Sushi omakase",
         description:
-          "Udon or ramen in Tenjin underground mall, or try mizutaki (chicken hotpot) — another Hakata classic.",
+          "Special meal: book lunch omakase (cheaper than dinner). Reserve 1–2 weeks ahead on Tabelog or by phone — see picks below. Sunday lunch slots fill fast.",
         category: "food",
         icon: "utensils",
-        mapsQuery: "Tenjin Underground Shopping Center Fukuoka",
+        highlight: true,
+        mapsQuery: "すし処 西の隠れ 福岡 西中洲",
       },
       {
         time: "14:30",

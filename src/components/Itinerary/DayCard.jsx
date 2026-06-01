@@ -79,6 +79,7 @@ export default function DayCard({
           {day.events.map((event, i) => (
             <TimelineItem
               key={`${day.id}-${event.time}-${event.title}`}
+              dayId={day.id}
               event={event}
               isLast={i === day.events.length - 1}
             />
