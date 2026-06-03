@@ -1,6 +1,8 @@
 import {
   Bath,
+  Bus,
   Coffee,
+  ExternalLink,
   Gift,
   Heart,
   Hotel,
@@ -19,6 +21,7 @@ import RestaurantList from "./RestaurantList";
 
 const ICONS = {
   plane: Plane,
+  bus: Bus,
   hotel: Hotel,
   utensils: Utensils,
   train: Train,
@@ -38,6 +41,7 @@ export default function TimelineItem({ dayId, event, isLast }) {
   const Icon = ICONS[event.icon] ?? Landmark;
   const mapsHref = googleMapsUrl(event.mapsQuery);
   const showRestaurants = event.category === "food";
+  const ticketLinks = event.ticketLinks ?? [];
 
   return (
     <li className="relative flex gap-4 pb-6 last:pb-0">
@@ -90,6 +94,29 @@ export default function TimelineItem({ dayId, event, isLast }) {
         <p className="mt-1 text-sm text-ink-muted leading-relaxed">
           {event.description}
         </p>
+        {!!ticketLinks.length && (
+          <div className="mt-3 flex flex-wrap gap-2">
+            {ticketLinks.map((link) => {
+              const label =
+                typeof link.label === "string"
+                  ? link.label
+                  : link.label?.[locale] ?? link.label?.en ?? link.href;
+
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-gold/40 bg-gold-soft px-3 py-1.5 text-xs font-semibold text-gold hover:bg-gold/15 transition-colors"
+                >
+                  <ExternalLink className="h-3 w-3" aria-hidden />
+                  {label}
+                </a>
+              );
+            })}
+          </div>
+        )}
         {showRestaurants && (
           <RestaurantList
             dayId={dayId}

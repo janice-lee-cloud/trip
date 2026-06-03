@@ -1,14 +1,17 @@
 import { tripImage } from "../utils/images";
 
+const NISHITETSU_BUS_TICKET_URL =
+  "https://ars-nishitetsu.linktivity.jp/activity/zt/LINKTIVITY-0CYYT";
+
 export const TRIP_META = {
   title: "Fukuoka & Beyond",
-  subtitle: "Hakata · Itoshima · Kumamoto · Yufuin",
+  subtitle: "Hakata · Yufuin · Kumamoto · Itoshima",
   dates: "June 4 – 9, 2026",
   nights: 5,
   days: 6,
   eyebrow: "CTT & Janice's trip",
   tagline:
-    "Six days across northern Kyushu — beaches, castle town, and a weekday onsen escape.",
+    "Six days across northern Kyushu — beaches, castle town, and an onsen town escape.",
 };
 
 export const HOTELS = {
@@ -58,7 +61,7 @@ export const ITINERARY_DAYS = [
         time: "18:15",
         title: "Hotel Trad Hakata",
         description:
-          "Check in at Sumiyoshi 3-12-1. Freshen up; confirm tomorrow’s Itoshima train times on your phone.",
+          "Check in at Sumiyoshi 3-12-1. Freshen up; confirm tomorrow’s Yufuin train times on your phone.",
         category: "hotel",
         icon: "hotel",
         highlight: true,
@@ -89,76 +92,94 @@ export const ITINERARY_DAYS = [
     dayNumber: 2,
     date: "2026-06-05",
     weekday: "Fri",
-    label: "Itoshima Beach Day",
-    badge: "糸島 · West coast",
-    image: tripImage("day-2.jpg"),
-    imageAlt: "Itoshima coastline and beach",
+    label: "Yufuin Onsen Town Day Trip",
+    badge: "由布院 · Scenic train",
+    image: tripImage("day-5.jpg"),
+    imageAlt: "Yufuin onsen town and countryside",
     hotelNote: "Overnight · Hotel Trad Hakata",
     events: [
       {
-        time: "07:30",
+        time: "07:00",
         title: "Breakfast at Hotel Trad Hakata",
         description:
-          "Hotel breakfast or grab pastries from a nearby bakery before heading west.",
+          "Hotel breakfast or grab a quick bakery breakfast before the scenic train.",
         category: "food",
         icon: "coffee",
         mapsQuery: "Hotel Trad Hakata Fukuoka",
       },
       {
-        time: "08:15",
-        title: "JR Chikuhi Line to Chikuzen-Maebaru",
+        time: "08:00",
+        title: "Yufuin no Mori or highway bus",
         description:
-          "From Hakata → Chikuzen-Maebaru (~30–40 min). Itoshima is easiest with a rental car; otherwise use local buses/taxi between sights.",
+          "Scenic train Hakata → Yufuin (~2 hr), or use the highway bus if seats/timing work better. Reserve window train seats or bus tickets ahead.",
         category: "transit",
         icon: "train",
-        mapsQuery: "Chikuzen-Maebaru Station",
-      },
-      {
-        time: "09:30",
-        title: "Sakurai Futamigaura",
-        description:
-          "The “couple rocks” torii in the sea — iconic Itoshima photo spot. Morning light is best; walk the pebble beach.",
-        category: "sightseeing",
-        icon: "landmark",
         highlight: true,
-        mapsQuery: "Sakurai Futamigaura Itoshima",
+        mapsQuery: "Yufuin Station",
+        ticketLinks: [
+          {
+            label: {
+              en: "Highway bus ticket",
+              "zh-TW": "高速巴士車票",
+            },
+            href: NISHITETSU_BUS_TICKET_URL,
+          },
+        ],
       },
       {
-        time: "11:00",
-        title: "Shiraito Falls",
+        time: "10:30",
+        title: "Yunotsubo Street",
         description:
-          "Short forest walk to the wide white waterfall. Cool and shady — good break before lunch.",
+          "Main shopping street — croquettes, cheese rolls, local crafts. Browse before the lunch rush.",
         category: "sightseeing",
-        icon: "landmark",
-        mapsQuery: "Shiraito Falls Itoshima Fukuoka",
+        icon: "store",
+        mapsQuery: "Yunotsubo Street Yufuin",
       },
       {
-        time: "12:30",
-        title: "Lunch — Itoshima seafood",
+        time: "12:00",
+        title: "Lunch — Yufuin",
         description:
-          "Try shirasu-don (whitebait bowl) or grilled oysters at a seaside restaurant near Keya or Fukae (seasonal). Book if weekend-adjacent.",
+          "Try local beef (Yufuin wagyu bowls), soba, or café lunch along Yunotsubo or side alleys.",
         category: "food",
         icon: "utensils",
-        mapsQuery: "Itoshima shirasu restaurant",
+        mapsQuery: "Yunotsubo Street Yufuin restaurants",
       },
       {
-        time: "14:00",
-        title: "Keya Beach & Genkai Sea views",
+        time: "13:30",
+        title: "Lake Kinrin",
         description:
-          "Relax on the sand, explore coastal roads, or visit a local café (e.g. milk pudding shops popular in Itoshima).",
+          "Walk the lake loop; morning mist is famous but afternoon is still scenic. Stop for matcha soft-serve.",
         category: "sightseeing",
-        icon: "deer",
+        icon: "landmark",
         highlight: true,
-        mapsQuery: "Keya Beach Itoshima",
+        mapsQuery: "Lake Kinrin Yufuin",
+      },
+      {
+        time: "15:00",
+        title: "Foot bath & Bussanji Street",
+        description:
+          "Free public foot bath near the station, then quieter back-street galleries and sweets shops.",
+        category: "sightseeing",
+        icon: "coffee",
+        mapsQuery: "Yufuin foot bath station",
       },
       {
         time: "16:00",
-        title: "JR back to Hakata",
+        title: "Train or highway bus back to Hakata",
         description:
-          "Return toward Fukuoka. Shower/change at the hotel before dinner.",
+          "Return to Fukuoka by train or highway bus, depending on the best departure time. Rest at Hotel Trad before dinner.",
         category: "transit",
         icon: "train",
         mapsQuery: "Hakata Station Fukuoka",
+        ticketLinks: [
+          {
+            label: {
+              en: "Highway bus ticket",
+              "zh-TW": "高速巴士車票",
+            },
+            href: NISHITETSU_BUS_TICKET_URL,
+          },
+        ],
       },
       {
         time: "18:30",
@@ -193,12 +214,21 @@ export const ITINERARY_DAYS = [
       },
       {
         time: "07:45",
-        title: "Shinkansen to Kumamoto",
+        title: "Shinkansen or highway bus to Kumamoto",
         description:
-          "Sakura or Mizuho from Hakata → Kumamoto (~40 min). Reserve seats if traveling on a busy Saturday.",
+          "Sakura or Mizuho from Hakata → Kumamoto (~40 min), or highway bus as a cheaper backup. Reserve seats if traveling on a busy Saturday.",
         category: "transit",
         icon: "train",
         mapsQuery: "Kumamoto Station",
+        ticketLinks: [
+          {
+            label: {
+              en: "Highway bus ticket",
+              "zh-TW": "高速巴士車票",
+            },
+            href: NISHITETSU_BUS_TICKET_URL,
+          },
+        ],
       },
       {
         time: "09:00",
@@ -248,12 +278,21 @@ export const ITINERARY_DAYS = [
       },
       {
         time: "17:00",
-        title: "Shinkansen to Hakata",
+        title: "Shinkansen or highway bus to Hakata",
         description:
-          "Return to Fukuoka. Rest at the hotel before a lighter evening meal.",
+          "Return to Fukuoka by Shinkansen or highway bus. Rest at the hotel before a lighter evening meal.",
         category: "transit",
         icon: "train",
         mapsQuery: "Hakata Station Fukuoka",
+        ticketLinks: [
+          {
+            label: {
+              en: "Highway bus ticket",
+              "zh-TW": "高速巴士車票",
+            },
+            href: NISHITETSU_BUS_TICKET_URL,
+          },
+        ],
       },
       {
         time: "19:30",
@@ -348,72 +387,73 @@ export const ITINERARY_DAYS = [
     dayNumber: 5,
     date: "2026-06-08",
     weekday: "Mon",
-    label: "Yufuin (Weekday) & Canal City",
-    badge: "Weekday · less crowds",
-    image: tripImage("day-5.jpg"),
-    imageAlt: "Yufuin onsen town and countryside",
+    label: "Itoshima Coast & Hotel Onsen",
+    badge: "糸島 · Dormy Inn onsen",
+    image: tripImage("day-2.jpg"),
+    imageAlt: "Itoshima coastline and beach",
     hotelNote: "Overnight · Dormy Inn Premium Hakata Canal City",
     events: [
       {
         time: "07:00",
         title: "Early breakfast & checkout",
         description:
-          "Check out of Hotel Trad Hakata; leave large bags at the front desk (pick up after Yufuin). Pack a day bag.",
+          "Check out of Hotel Trad Hakata; leave large bags at the front desk and pack a beach day bag.",
         category: "hotel",
         icon: "hotel",
         mapsQuery: "Hotel Trad Hakata Fukuoka",
       },
       {
-        time: "08:00",
-        title: "Yufuin no Mori limited express",
+        time: "08:15",
+        title: "JR Chikuhi Line to Chikuzen-Maebaru",
         description:
-          "Scenic train Hakata → Yufuin (~2 hr). Monday is quieter than weekend — reserve window seats ahead.",
+          "From Hakata → Chikuzen-Maebaru (~30–40 min). Itoshima is easiest with a rental car; otherwise use local buses/taxi between sights.",
         category: "transit",
         icon: "train",
-        highlight: true,
-        mapsQuery: "Yufuin Station",
+        mapsQuery: "Chikuzen-Maebaru Station",
       },
       {
-        time: "10:30",
-        title: "Yunotsubo Street",
+        time: "09:30",
+        title: "Sakurai Futamigaura",
         description:
-          "Main shopping street — croquettes, cheese rolls, local crafts. Browse before the lunch rush.",
-        category: "sightseeing",
-        icon: "store",
-        mapsQuery: "Yunotsubo Street Yufuin",
-      },
-      {
-        time: "12:00",
-        title: "Lunch — Yufuin",
-        description:
-          "Try local beef (Yufuin wagyu bowls), soba, or café lunch along Yunotsubo or side alleys.",
-        category: "food",
-        icon: "utensils",
-        mapsQuery: "Yunotsubo Street Yufuin restaurants",
-      },
-      {
-        time: "13:30",
-        title: "Lake Kinrin",
-        description:
-          "Walk the lake loop; morning mist is famous but afternoon is still scenic. Stop for matcha soft-serve.",
+          "The “couple rocks” torii in the sea — iconic Itoshima photo spot. Morning light is best; walk the pebble beach.",
         category: "sightseeing",
         icon: "landmark",
-        mapsQuery: "Lake Kinrin Yufuin",
+        highlight: true,
+        mapsQuery: "Sakurai Futamigaura Itoshima",
       },
       {
-        time: "15:00",
-        title: "Foot bath & Bussanji Street",
+        time: "11:00",
+        title: "Shiraito Falls",
         description:
-          "Free public foot bath near the station, then quieter back-street galleries and sweets shops.",
+          "Short forest walk to the wide white waterfall. Cool and shady — good break before lunch.",
         category: "sightseeing",
-        icon: "coffee",
-        mapsQuery: "Yufuin foot bath station",
+        icon: "landmark",
+        mapsQuery: "Shiraito Falls Itoshima Fukuoka",
+      },
+      {
+        time: "12:30",
+        title: "Lunch — Itoshima seafood",
+        description:
+          "Try shirasu-don (whitebait bowl) or grilled oysters at a seaside restaurant near Keya or Fukae (seasonal).",
+        category: "food",
+        icon: "utensils",
+        mapsQuery: "Itoshima shirasu restaurant",
+      },
+      {
+        time: "14:00",
+        title: "Keya Beach & Genkai Sea views",
+        description:
+          "Relax on the sand, explore coastal roads, or visit a local café (e.g. milk pudding shops popular in Itoshima).",
+        category: "sightseeing",
+        icon: "deer",
+        highlight: true,
+        mapsQuery: "Keya Beach Itoshima",
       },
       {
         time: "16:30",
-        title: "Train back to Hakata",
+        title: "JR back to Hakata",
         description:
-          "Return to Fukuoka. Collect luggage at Hotel Trad if stored there.",
+          "Return to Fukuoka. Collect luggage at Hotel Trad, then head to Canal City.",
         category: "transit",
         icon: "train",
         mapsQuery: "Hakata Station Fukuoka",

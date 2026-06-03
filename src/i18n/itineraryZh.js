@@ -1,9 +1,9 @@
 export const TRIP_META_ZH = {
   title: "福岡",
-  subtitle: "博多 · 糸島 · 熊本 · 由布院",
+  subtitle: "博多 · 由布院 · 熊本 · 糸島",
   dates: "2026年6月4日 – 9日",
   eyebrow: "CTT 與 Janice 之旅",
-  tagline: "九州北部六日行程——海灘、古城與平日溫泉小鎮。",
+  tagline: "九州北部六日行程——海灘、古城與溫泉小鎮。",
 };
 
 export const CATEGORY_STYLES_ZH = {
@@ -34,7 +34,7 @@ export const ITINERARY_DAYS_ZH = [
       {
         title: "Hotel Trad Hakata",
         description:
-          "於住吉 3-12-1 入住。梳洗後在手機確認明日糸島交通時刻。",
+          "於住吉 3-12-1 入住。梳洗後在手機確認明日由布院交通時刻。",
       },
       {
         title: "中洲屋台",
@@ -49,47 +49,48 @@ export const ITINERARY_DAYS_ZH = [
   },
   {
     weekday: "週五",
-    label: "糸島海灘一日遊",
-    badge: "糸島 · 西海岸",
-    imageAlt: "糸島海岸與海灘",
+    label: "由布院溫泉町一日遊",
+    badge: "由布院 · 觀光列車",
+    imageAlt: "由布院溫泉町與鄉村風景",
     hotelNote: "住宿 · Hotel Trad Hakata",
     events: [
       {
         title: "Hotel Trad Hakata 早餐",
-        description: "飯店早餐或附近麵包店，出發前用餐。",
+        description: "飯店早餐或附近麵包店，搭觀光列車前簡單用餐。",
       },
       {
-        title: "JR 筑肥線至筑前前原",
+        title: "由布院之森或高速巴士",
         description:
-          "博多 → 筑前前原（約 30–40 分鐘）。糸島景點建議租車；否則以巴士／計程車串聯。",
+          "景觀列車博多 → 由布院（約 2 小時），或視座位與時間改搭高速巴士。建議提前預訂列車靠窗位或巴士車票。",
       },
       {
-        title: "櫻井二見浦",
+        title: "湯之坪街道",
         description:
-          "海中夫婦岩與鳥居——糸島經典拍照點。上午光線最佳，可沿卵石海灘散步。",
+          "主街逛小店——可樂餅、起司捲、在地工藝，午餐前先慢慢逛。",
       },
       {
-        title: "白糸瀑布",
-        description: "短程森林步道至寬廣白色瀑布，涼爽遮蔭，適合午餐前休息。",
-      },
-      {
-        title: "午餐 — 糸島海鮮",
+        title: "午餐 — 由布院",
         description:
-          "品嚐しらす丼（吻仔魚飯）或烤牡蠣（季節限定）。週末前後建議預約。",
+          "由布院和牛丼、蕎麥或咖啡廳午餐，主街或巷弄小店。",
       },
       {
-        title: "芥屋海水浴場與玄界灘",
+        title: "金鱗湖",
         description:
-          "海灘放鬆、沿海公路，或造訪在地咖啡／布丁名店。",
+          "繞湖散步；晨霧有名但下午仍美。可品抹茶霜淇淋。",
       },
       {
-        title: "JR 返回博多",
-        description: "回福岡市區，飯店梳洗後晚餐。",
+        title: "足湯與佛山寺街道",
+        description:
+          "車站附近免費足湯，再逛較安靜的後街藝廊與甜點店。",
+      },
+      {
+        title: "列車或高速巴士返回博多",
+        description: "依較合適班次搭列車或高速巴士回福岡，先回 Hotel Trad 休息後晚餐。",
       },
       {
         title: "晚餐 — 明太子與博多名物",
         description:
-          "明太子料理或博多站附近居酒屋——海灘日後的經典福岡味。",
+          "明太子料理或博多站附近居酒屋——由布院一日遊後的經典福岡味。",
       },
     ],
   },
@@ -105,9 +106,9 @@ export const ITINERARY_DAYS_ZH = [
         description: "飯店或車站地下美食街（デパ地下）早餐後搭新幹線。",
       },
       {
-        title: "新幹線至熊本",
+        title: "新幹線或高速巴士至熊本",
         description:
-          "櫻花號或瑞穗號，博多 → 熊本（約 40 分鐘）。週六建議劃位。",
+          "櫻花號或瑞穗號，博多 → 熊本（約 40 分鐘）；高速巴士可作較省錢備選。週六建議提前劃位或訂票。",
       },
       {
         title: "熊本城",
@@ -134,8 +135,8 @@ export const ITINERARY_DAYS_ZH = [
           "與熊本熊合影、買週邊（可查官網表演時間）。",
       },
       {
-        title: "新幹線返回博多",
-        description: "回福岡，飯店休息後輕鬆晚餐。",
+        title: "新幹線或高速巴士返回博多",
+        description: "搭新幹線或高速巴士回福岡，飯店休息後輕鬆晚餐。",
       },
       {
         title: "晚餐 — 大濠公園一帶",
@@ -186,44 +187,43 @@ export const ITINERARY_DAYS_ZH = [
   },
   {
     weekday: "週一",
-    label: "由布院（平日）與 Canal City",
-    badge: "平日 · 人潮較少",
-    imageAlt: "由布院溫泉町與鄉村風景",
+    label: "糸島海岸與飯店溫泉",
+    badge: "糸島 · Dormy Inn 溫泉",
+    imageAlt: "糸島海岸與海灘",
     hotelNote: "住宿 · Dormy Inn Premium 博多 Canal City",
     events: [
       {
         title: "早起早餐與退房",
         description:
-          "自 Hotel Trad Hakata 退房；大件行李寄放櫃台（由布院回來再取），準備一日包。",
+          "自 Hotel Trad Hakata 退房；大件行李寄放櫃台，準備海邊一日包。",
       },
       {
-        title: "由布院之森觀光特急",
+        title: "JR 筑肥線至筑前前原",
         description:
-          "景觀列車博多 → 由布院（約 2 小時）。週一較週末清靜——建議預訂靠窗座位。",
+          "博多 → 筑前前原（約 30–40 分鐘）。糸島景點建議租車；否則以巴士／計程車串聯。",
       },
       {
-        title: "湯之坪街道",
+        title: "櫻井二見浦",
         description:
-          "主街逛小店——可樂餅、起司捲、在地工藝，午餐前先慢慢逛。",
+          "海中夫婦岩與鳥居——糸島經典拍照點。上午光線最佳，可沿卵石海灘散步。",
       },
       {
-        title: "午餐 — 由布院",
+        title: "白糸瀑布",
+        description: "短程森林步道至寬廣白色瀑布，涼爽遮蔭，適合午餐前休息。",
+      },
+      {
+        title: "午餐 — 糸島海鮮",
         description:
-          "由布院和牛丼、蕎麥或咖啡廳午餐，主街或巷弄小店。",
+          "品嚐しらす丼（吻仔魚飯）或烤牡蠣（季節限定）。",
       },
       {
-        title: "金鱗湖",
+        title: "芥屋海水浴場與玄界灘",
         description:
-          "繞湖散步；晨霧有名但下午仍美。可品抹茶霜淇淋。",
+          "海灘放鬆、沿海公路，或造訪在地咖啡／布丁名店。",
       },
       {
-        title: "足湯與別府街道",
-        description:
-          "車站附近免費足湯，再逛較安靜的別府／商店後街與甜點店。",
-      },
-      {
-        title: "列車返回博多",
-        description: "回福岡，至 Hotel Trad 取回寄放行李。",
+        title: "JR 返回博多",
+        description: "回福岡市區，至 Hotel Trad 取回寄放行李，再前往 Canal City。",
       },
       {
         title: "Dormy Inn Premium 博多 Canal City",

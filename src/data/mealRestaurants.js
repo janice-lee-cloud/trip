@@ -37,12 +37,12 @@ export const MEAL_RESTAURANTS = {
       tabelogUrl: "https://tabelog.com/fukuoka/A4001/A400101/40000014/",
     },
   ],
-  "day-2@07:30": [
+  "day-2@07:00": [
     {
       name: { en: "Shinshodo Main Store", "zh-TW": "進々堂 本店" },
       note: {
-        en: "Legendary melon pan — grab bakery items before the Itoshima train.",
-        "zh-TW": "名物菠蘿包，出發糸島前適合外帶。",
+        en: "Legendary melon pan — grab bakery items before the Yufuin train.",
+        "zh-TW": "名物菠蘿包，出發由布院前適合外帶。",
       },
       mapsQuery: "進々堂 本店 福岡",
       tabelogUrl: "https://tabelog.com/fukuoka/A4001/A400103/40000056/",
@@ -55,35 +55,6 @@ export const MEAL_RESTAURANTS = {
       },
       mapsQuery: "Boulangerie Hidemi Fukuoka",
       tabelogUrl: "https://tabelog.com/fukuoka/A4001/A400103/40010452/",
-    },
-  ],
-  "day-2@12:30": [
-    {
-      name: { en: "Itoshima Shokudo Honten", "zh-TW": "糸島食堂 本店" },
-      note: {
-        en: "Bucket-sized seafood bowls from Nagahama Market fish — arrive before noon.",
-        "zh-TW": "長濱市場直送海鮮丼，桶盛豪邁，建議正午前到。",
-      },
-      mapsQuery: "糸島食堂 本店 糸島市",
-      tabelogUrl: "https://tabelog.com/fukuoka/A4009/A400901/40062204/",
-    },
-    {
-      name: { en: "Oyster House Itoshima", "zh-TW": "糸島 かき小屋" },
-      note: {
-        en: "Grilled oysters (seasonal Jun–Sep); pair with local beer.",
-        "zh-TW": "烤牡蠣（約 6–9 月季節限定），可配在地啤酒。",
-      },
-      mapsQuery: "糸島 牡蠣 福岡",
-      tabelogUrl: tabelogSearch("糸島 牡蠣 料理"),
-    },
-    {
-      name: { en: "Uotami Itoshima", "zh-TW": "魚民 糸島店" },
-      note: {
-        en: "Casual seafood izakaya chain — easy menu with photos.",
-        "zh-TW": "連鎖海鮮居酒屋，菜單有圖好點餐。",
-      },
-      mapsQuery: "魚民 糸島",
-      tabelogUrl: tabelogSearch("魚民 糸島"),
     },
   ],
   "day-2@18:30": [
@@ -99,8 +70,8 @@ export const MEAL_RESTAURANTS = {
     {
       name: { en: "Hakata Izakaya Hanamidori", "zh-TW": "博多華味鳥" },
       note: {
-        en: "Famous chicken cuisine; good with local shochu after a beach day.",
-        "zh-TW": "博多名物華味鳥，適合搭配燒酎。",
+        en: "Famous chicken cuisine; good with local shochu after a Yufuin day trip.",
+        "zh-TW": "博多名物華味鳥，由布院一日遊後適合搭配燒酎。",
       },
       mapsQuery: "華味鳥 博多 本店",
       tabelogUrl: tabelogSearch("博多華味鳥 本店"),
@@ -221,7 +192,7 @@ export const MEAL_RESTAURANTS = {
       tabelogUrl: tabelogSearch("もつ鍋 おおやま 天神"),
     },
   ],
-  "day-5@12:00": [
+  "day-2@12:00": [
     {
       name: { en: "Yufumabushi Shin", "zh-TW": "由布まぶし心" },
       note: {
@@ -239,6 +210,35 @@ export const MEAL_RESTAURANTS = {
       },
       mapsQuery: "田のあじ 由布院",
       tabelogUrl: tabelogSearch("田のあじ 由布院"),
+    },
+  ],
+  "day-5@12:30": [
+    {
+      name: { en: "Itoshima Shokudo Honten", "zh-TW": "糸島食堂 本店" },
+      note: {
+        en: "Bucket-sized seafood bowls from Nagahama Market fish — arrive before noon.",
+        "zh-TW": "長濱市場直送海鮮丼，桶盛豪邁，建議正午前到。",
+      },
+      mapsQuery: "糸島食堂 本店 糸島市",
+      tabelogUrl: "https://tabelog.com/fukuoka/A4009/A400901/40062204/",
+    },
+    {
+      name: { en: "Oyster House Itoshima", "zh-TW": "糸島 かき小屋" },
+      note: {
+        en: "Grilled oysters (seasonal Jun–Sep); pair with local beer.",
+        "zh-TW": "烤牡蠣（約 6–9 月季節限定），可配在地啤酒。",
+      },
+      mapsQuery: "糸島 牡蠣 福岡",
+      tabelogUrl: tabelogSearch("糸島 牡蠣 料理"),
+    },
+    {
+      name: { en: "Uotami Itoshima", "zh-TW": "魚民 糸島店" },
+      note: {
+        en: "Casual seafood izakaya chain — easy menu with photos.",
+        "zh-TW": "連鎖海鮮居酒屋，菜單有圖好點餐。",
+      },
+      mapsQuery: "魚民 糸島",
+      tabelogUrl: tabelogSearch("魚民 糸島"),
     },
   ],
   "day-5@19:00": [

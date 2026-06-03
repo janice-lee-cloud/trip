@@ -10,7 +10,7 @@ Share the link or **install it on your phone** like an app (see [Install as app]
 
 ## Features
 
-- **Itinerary** — Itoshima, Kumamoto, weekday Yufuin, and Fukuoka days with detailed meals and activities
+- **Itinerary** — Yufuin, Kumamoto, Itoshima, and Fukuoka days with detailed meals and activities
 - **Google Maps links** — tap any event title to open directions
 - **Restaurant picks** — famous local spots per meal with [Tabelog](https://tabelog.com) review links (Japan’s OpenRice-style guides)
 - **Weather** — daily forecast per area (Open-Meteo)
